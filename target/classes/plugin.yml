@@ -1,0 +1,4 @@
+name: AbstractMenu
+version: '1.0'
+main: com.cota.abstractmenu.AbstractMenu
+api-version: 1.19
