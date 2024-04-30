@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
@@ -31,20 +32,33 @@ public class AbstractMenu implements Listener {
     private PreviousPageButton previousPageButton;
     private static Plugin plugin;
     private int stopIndex = 0;
+    private InventoryType customInventoryType = null;
     private List<Button> buttons = new ArrayList<>();
 
     ///Creating the menu
     public void createMenu() {
-        if (addPageHeader) {
-            menu = Bukkit.createInventory(null, 9 * this.size, this.title + " §7(1)");
-            return;
+        if (customInventoryType == null) {
+            if (addPageHeader) {
+                menu = Bukkit.createInventory(null, 9 * this.size, this.title + " §7(1)");
+                return;
+            }
+            menu = Bukkit.createInventory(null, 9 * this.size, this.title);
+        }else {
+            if (addPageHeader) {
+                menu = Bukkit.createInventory(null, customInventoryType, this.title + " §7(1)");
+                return;
+            }
+            menu = Bukkit.createInventory(null, customInventoryType, this.title);
         }
-        menu = Bukkit.createInventory(null, 9*this.size, this.title);
         register();
     }
     ///Setting the title of the menu
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void setCustomInventoryType(InventoryType inventoryType) {
+        this.customInventoryType = inventoryType;
     }
 
     ///Setting the size of the menu
