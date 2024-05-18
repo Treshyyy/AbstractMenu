@@ -80,7 +80,7 @@ public class BlockButton implements Listener {
 //        p.sendMessage(getItemStack().toString());
 //        p.sendMessage(ChatColor.AQUA + e.getCurrentItem().toString());
 
-        if (!e.getCurrentItem().equals(getItemStack())) return;
+        if (!e.getCurrentItem().isSimilar(getItemStack())) return;
         if (!(e.getRawSlot() < e.getView().getTopInventory().getSize())) return;
 
         if (menu.getNextPageClass() == null) {

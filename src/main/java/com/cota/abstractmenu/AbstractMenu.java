@@ -16,7 +16,7 @@ public final class AbstractMenu extends JavaPlugin {
         // Plugin shutdown logic
     }
 
-    public void setupAbstractMenu(){
+    public void setupAbstractMenua(){
 
     }
 }
